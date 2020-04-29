@@ -1,0 +1,8 @@
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\bin\Debug\netstandard2.1\Application.deps.json
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\bin\Debug\netstandard2.1\Application.dll
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\bin\Debug\netstandard2.1\Application.pdb
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\obj\Debug\netstandard2.1\Application.AssemblyInfoInputs.cache
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\obj\Debug\netstandard2.1\Application.AssemblyInfo.cs
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\obj\Debug\netstandard2.1\Application.dll
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\obj\Debug\netstandard2.1\Application.pdb
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Application\obj\Debug\netstandard2.1\Application.csprojAssemblyReference.cache

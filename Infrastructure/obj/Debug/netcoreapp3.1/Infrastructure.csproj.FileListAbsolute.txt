@@ -1,0 +1,10 @@
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.json
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.runtimeconfig.dev.json
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+F:\pamal\pamal\udemy\.netDesignPatterns\work\dotnetCleanArchitecture\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb

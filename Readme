@@ -1,0 +1,20 @@
+meke itnne 
+    Domain -- meke tinne entities witharamai 
+        athulema tina layer eka thama meka
+    
+    Application-- meke tinne buisness logic ekai authentication tikai
+
+    Presentation -- meke tinne Presentation layer eka
+
+    Infrastructure -- connecting to database and orm eka tinne meke
+        migrations 
+        dbcontext
+        models
+        DI 
+        menna me tika tinna one
+--------------------------------------------------------------------------------------------------------
+Infrastructure eka idetity dana hinda dotnet core lib ekak ganna one bt man ganne standard ekak.
+chek karanna waradi nam
+---------------------------------------------------------------------------------------------------
+project eke tina Di eka enna one Infrastructure ekata nisa eka ain karana eka karanawa.
+    ita passe Infrastructure eka project eke reference ekak karanawa.
