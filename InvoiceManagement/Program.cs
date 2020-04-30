@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore;
-using Infras
+using Infrastructure.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 namespace InvoiceManagement
 {
     public class Program
@@ -25,12 +27,12 @@ namespace InvoiceManagement
                 catch (System.Exception ex)
                 {
                     var logger=services.GetRequiredService<ILogger<Program>>();
-                    logger.Logerror(ex,"error in the databae");
+                    logger.LogError(ex,"error in the databae");
 
                     throw;
                 }
             }
-            host.run();
+            host.Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

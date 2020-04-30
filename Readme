@@ -18,3 +18,30 @@ chek karanna waradi nam
 ---------------------------------------------------------------------------------------------------
 project eke tina Di eka enna one Infrastructure ekata nisa eka ain karana eka karanawa.
     ita passe Infrastructure eka project eke reference ekak karanawa.
+
+    public static void Main(string[] args)
+        {
+            var host=CreateWebHostBuilder(args).Build();
+            using(var scope=host.Services.CreateScope()){
+                var services=scope.ServiceProvider;
+                try
+                {
+                    var context=services.GetRequiredService<ApplicationDbContext>();
+                    context.Database.Migrate();
+                }
+                catch (System.Exception ex)
+                {
+                    var logger=services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex,"error in the databae");
+
+                    throw;
+                }
+            }
+            host.Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+----------------------------------------------------------------------------------------------------
+built faild ekak awa.ekata hethuwa thamai solution project eka delete karala aluthen hadana eka.
+------------------------------------------------------------------------------------------------------------
