@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj": {}
+    "f:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj": {
+    "f:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
+        "projectUniqueName": "f:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
+        "projectPath": "f:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Chamath\\.nuget\\packages\\",
-        "outputPath": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\obj\\",
+        "outputPath": "f:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -45,3 +45,8 @@ project eke tina Di eka enna one Infrastructure ekata nisa eka ain karana eka ka
 ----------------------------------------------------------------------------------------------------
 built faild ekak awa.ekata hethuwa thamai solution project eka delete karala aluthen hadana eka.
 ------------------------------------------------------------------------------------------------------------
+DOMAIN
+    mekata karanna tinne odit ekak hadanawa create karapuwa update karapuwa balanna karanna.
+    audit entity ekan thamai okkoma inherit wenne eka hinda eken inherit wena widihata class hadanna one.
+    enum dekak hadanawa eka hadanne constant tiyaganna.
+        domain layer eke tinne entities ekka wada witharai. eka iwarai.
