@@ -50,3 +50,21 @@ DOMAIN
     audit entity ekan thamai okkoma inherit wenne eka hinda eken inherit wena widihata class hadanna one.
     enum dekak hadanawa eka hadanne constant tiyaganna.
         domain layer eke tinne entities ekka wada witharai. eka iwarai.
+---------------------------------------------------------------------------------------------------------
+APPLICATION
+    meka use karanne interface hadanna eka hinda api karanne ef eka install karana eka.
+    odit eke logic eka liyanne me layer eke eka hinda 
+        currentuser ge dewal ganna one nisa ICurrentUser kiyala ekak hadanawa.
+    
+    reference ekak daganna Domain eken mokada DbSet kiyala ekak hadana hinda.
+
+    application eka reference ekak Infrastructure ekata.
+
+    application eke tina IApplicationDbContexet eka add karama Infrastructure ekata DI ekatath add 
+    karanna one. mokada eka api use karanawa DI ekak widihata.
+------------------------------------------------------------------------------------------------------
+API 
+    ICurrentUser kiyna eken current userne ganne.eka ganna nam http tinne webapi eke nisa eke service 
+    folder eke class ekak hadanawa.
+        ctor eke IHttpcontextAccessor ekak hadala eka user id ekata assign karanawa.
+        class eka starup eke register karanna one.

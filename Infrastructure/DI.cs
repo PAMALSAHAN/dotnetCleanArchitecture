@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Application.common;
 
 namespace Infrastructure
 {
@@ -12,6 +13,7 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services ,IConfiguration configuration){
             
+            services.AddScoped<IApplicationDbContext>(provider =>provider.GetService<ApplicationDbContext>());
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     configuration.GetConnectionString("DefaultConnection")));

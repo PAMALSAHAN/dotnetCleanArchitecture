@@ -16,6 +16,102 @@ namespace Infrastructure.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.1");
 
+            modelBuilder.Entity("Domain.Entities.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("REAL");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("DiscountTypes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("From")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("InvoiceNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LastMadified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastMadifiedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentTerms")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Tax")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("TaxTypes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("To")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Application.common.IApplicationDbContext.Invoicestbl");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InvoiceItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Item")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LastMadified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastMadifiedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Quantity")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Rate")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("Application.common.IApplicationDbContext.InvoiceItemstbl");
+                });
+
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
                     b.Property<string>("UserCode")
@@ -292,6 +388,15 @@ namespace Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Domain.Entities.InvoiceItem", b =>
+                {
+                    b.HasOne("Domain.Entities.Invoice", "Invoice")
+                        .WithMany("InvoiceItem")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

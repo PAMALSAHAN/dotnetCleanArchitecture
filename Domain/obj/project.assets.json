@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
+      "projectUniqueName": "F:\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
+      "projectPath": "F:\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\Chamath\\.nuget\\packages\\",
-      "outputPath": "F:\\pamal\\pamal\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\obj\\",
+      "outputPath": "F:\\udemy\\.netDesignPatterns\\work\\dotnetCleanArchitecture\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
