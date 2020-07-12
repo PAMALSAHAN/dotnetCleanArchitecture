@@ -16,7 +16,7 @@ namespace Infrastructure
             services.AddScoped<IApplicationDbContext>(provider =>provider.GetService<ApplicationDbContext>());
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
-                    configuration.GetConnectionString("DefaultConnection")));
+                    configuration.GetConnectionString("DefaultConnection"))); 
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

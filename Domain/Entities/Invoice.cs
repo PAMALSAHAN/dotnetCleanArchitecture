@@ -7,6 +7,10 @@ namespace Domain.Entities
 {
     public class Invoice :AuditEntity
     {
+        public Invoice()
+        {
+            this.InvoiceItems=new List<InvoiceItem>();
+        }
         public int Id { get; set; }
         public string InvoiceNumber { get; set; }
         public string Logo { get; set; }
@@ -20,7 +24,7 @@ namespace Domain.Entities
         public double Tax { get; set; }
         public TaxTypes TaxTypes { get; set; }
         public double AmountPaid { get; set; }
-        public IList<InvoiceItem> InvoiceItem { get; set; }
+        public IList<InvoiceItem> InvoiceItems { get; set; }
 
     }
 }

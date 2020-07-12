@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace InvoiceManagement.Controllers
 {
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public abstract class ApiController : ControllerBase

@@ -68,3 +68,156 @@ API
     folder eke class ekak hadanawa.
         ctor eke IHttpcontextAccessor ekak hadala eka user id ekata assign karanawa.
         class eka starup eke register karanna one.
+----------------------------------------------------------------------------------------------------
+3
+    mekedi karanne validation karanna application layer ekata add karanawa nuget package ekak
+        dotnet add package FluentValidation 
+        dotnet add package FluentValidation.DependencyInjectionExtensions 
+        dotnet add package MediatR.Extensions.Microsoft.DependencyInjection 
+    
+    ita passe karanne application eke command folder ekak hadanawa.createInvoiceCommand ekata meka dana eka karanne.eke thmaa post eka
+    hadanne.dan methana tinawa InvoiceItem kiyala array ekak eka direct api ekata penawa eka use karath eka hinda good practise ekak widihata karanna
+    tinne ehama expase karana eka nathi karana eka.mekata karanne application eke view model ekak hadala ekata InvoiceItem eke properties daganna eka.
+    eke tinawa invoce ekai invoice id ekai ewa ain karanawa.
+        ita passe createInvoiceCommand eka inherit venawa IRequest ekn eke return wenna one id ekak eka hinda return type eka widihata eka liyanawa.
+            public class CreateInvoiceCommands :IRequest<int> 
+        dan vm eke property ekak wadi karanawa.mekedi application layer eke vm ekak tibbahama apita properties add karannath pulwan delete karannath 
+        puluwan.
+    mekata use karanna one dan handlers.eken puluwan eken thama postman eka hadaganne MediatR use karala tinawane.
+    ----------------------------------------------------------------------------------------------
+    handlers kiyala folder ekak hadanawa.invoice eke.handler cs file eka hadala eka inherit karanawa IRequestHandler eken ekata use karana 
+    parameter deka thami input ekei out put ekai ita passe eken implement karagannawa one eka.
+        ita passe karanne db context eka ctor eka use karala hadaganna eka.ita passe entity ekak hadaganna one.
+              private readonly IApplicationDbContext _context;
+
+        public CreateInvoiceCommandHandler(IApplicationDbContext context)
+        {
+            this._context = context;
+
+        }
+    
+         public async Task<int> Handle(CreateInvoiceCommands request, CancellationToken cancellationToken)
+        {
+            var entity= new Invoice{
+                AmountPaid=request.AmountPaid,
+                Date=request.Date,
+                Discount=request.Discount,
+                DiscountTypes=request.DiscountTypes,
+                DueDate=request.DueDate,
+                From=request.From,
+                InvoiceNumber=request.InvoiceNumber,
+                Logo=request.Logo,
+                PaymentTerms=request.PaymentTerms,
+                Tax=request.Tax,
+                To=request.To,
+                TaxTypes=request.TaxTypes,
+                InvoiceItems=request.InvoiceItems.Select(i=>new InvoiceItem{
+                    Item=i.Item,
+                    Quantity=i.Quantity,
+                    Rate=i.Rate
+                    
+                }).ToList()
+            };
+
+            _context.Invoicestbl.Add(entity);
+            await _context.SaveChangesAsync(cancellationToken);
+            return entity.Id;
+            
+        }
+
+    mekedi karanne createInvoiceCommand eke tina ewwa invoice eke instance ekak hadala eken invoice ekata dana eka thmai karanne.api direct ape 
+    domain eka pennanne hada api ekata.eka hinda thami createInvoiceCommand eken aran invoice ekata danne.
+    ---------------------------------------------------------------------------------------------------------------------
+    ita passe karannatinne validate karana eka.mekedi properties 3 withara null wenna baha ekata ekata use karanne 
+        eka hinda application eke behavior kiyala folder ekak hadala behavior.cs kiyala cs file ekak hadala eke
+                public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+            {
+                private readonly IEnumerable<IValidator<TRequest>> _validators;
+
+                public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+                {
+                    _validators = validators;
+                }
+
+                public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+                {
+                    var context = new ValidationContext(request);
+                    var failures = _validators
+                        .Select(v => v.Validate(context))
+                        .SelectMany(result => result.Errors)
+                        .Where(f => f != null)
+                        .ToList();
+
+                    if (failures.Count != 0)
+                    {
+                        throw new ValidationException(failures);
+                    }
+
+                    return next();
+                }
+            }
+            
+        mke podi error ekak enawa line 144 hadanna bari una. ekata karanne 
+        var context = new ValidationContext <TRequest>(request); karana eka.
+    -----------------------------------------------------------------------------------------------------
+    ita passe validator kiyala folder ekak hadal eke createInvoiceCommandvalidator kiyala cs file eka hadanawa.
+        
+        public CreateInvoiceCommadValidator()
+        {
+            RuleFor(x=>x.AmountPaid).NotNull();
+            RuleFor(x=>x.AmountPaid).NotNull();
+            RuleFor(x=>x.From).NotEmpty().MinimumLength(3);
+            RuleFor(x=>x.To).NotEmpty().MinimumLength(3);
+            
+            
+        }
+
+        invoice item wala custom validate liyana kota karanna tinne wenawa cs file ekak hadanawa InvoiceItempropertyValidator kiyala
+        ita passe eka inherit venna one property validator walin.
+            itapasse abstract implement karala danna one.meke ctor ekak hadala base eka eken inherit karala eke validate error eka pass 
+            karanawa.
+
+                    public InvoiceItemPropertyValidator():base("Property {PropertyName} should not be an empty list.")
+                {
+                    
+                }
+
+                // meka use karanne item list eke athule tina ewwa null wenawada kiyala check karanna. 
+                protected override bool IsValid(PropertyValidatorContext context)
+                {
+                    var list=context.PropertyValue as IList<InvoiceItemVM>;
+                    return list !=null && list.Any();
+                }
+            ita passe invoice item eka vaildate karanawa.
+        -----------------------------------------------------------------
+        WHY USE FluentValidation
+            meka use karanne solid eke s eka violate vena eka nawaththanna.apita vaild da kiyala balanna puluwan [email]
+            wage annotation use karala e fieldname.IsValid() eken.bt eka clean code ekak newe eka hinda wenawa validate kranna balanawa.
+
+        vaildators tika hadala iwara unawa apita karana tinne fluwen validator tika register karanawa eke e kiyanne DI
+        mekata DI file ekak hadala startup edata add karanawa addApplication kiyal.
+             public static IServiceCollection AddApplication(this IServiceCollection services)
+        {
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            return services;
+        } 
+        ita passe meka service ekata add karanna thamai tinne.configure service ekata add karanna tinne.
+             services.AddApplication();
+        like this.
+        ----------------------------------------------------------------------------------------------------
+        ita passe karnne api controller eke controller ekak hadana eka.mekedi MediatR tika dala abstract controller ekak thma hadanne
+        base controller ekak hadanawa.
+        -------------------------------------------------------------------------------------------------
+
+        invoice controller ekak hadala api controller eka inherit karanawa.ita passe karanne 
+
+         [HttpPost]
+        public async Task<ActionResult<int>> Create(CreateInvoiceCommands command)
+        {
+            return await Mediator.Send(command);
+        }
+
+        use karanawa.eke puluwan invoice command tika mediator eka haraha denna mediator ekata. authorized ayata witharak nisa
+        e notation eka use karanawa controller ekata udin. 

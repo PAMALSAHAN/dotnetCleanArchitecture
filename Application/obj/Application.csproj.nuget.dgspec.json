@@ -57,7 +57,7 @@
             },
             "FluentValidation.WebAPI": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[8.6.1, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
