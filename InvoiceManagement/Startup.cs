@@ -1,3 +1,4 @@
+using Application;
 using Application.common;
 using Infrastructure;
 using InvoiceManagement.services;
@@ -22,7 +23,7 @@ namespace InvoiceManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddScoped<ICurrentUserService,CurrentUserService>(); 
             services.AddControllersWithViews();
