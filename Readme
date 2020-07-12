@@ -221,3 +221,60 @@ API
 
         use karanawa.eke puluwan invoice command tika mediator eka haraha denna mediator ekata. authorized ayata witharak nisa
         e notation eka use karanawa controller ekata udin. 
+            createIvoiceCommand httppost eka wada karnawa.
+    -----------------------------------------------------------------------------------------------------------------
+        dan karanna hadanne hadapu ivoice ganna eka httpget eka ekata karane invoice eke vm ekak hadala ita passe query folder 
+        ekak hadala eke 
+            query eke invoice ka use karana hinda karanne vm ekak ekata hadaganna eka.itapasse query folder eke cs file ekak hadanawa
+            getuserinvoicesquery kiyala eke 
+                  public class GetUserInvoicesQuery :IRequest<IList<InvoiceVM>>
+                    {
+                        public string User { get; set; }
+                    }
+        mekedi IRequest eken karanne output eka theranaya karana eka.eka dala tinawa. property ekak widihata use karanne user eka witharai.
+    ---------------------------------------------------------------------------------------------------
+    query eka haduwahama karanne ekata adala handler eka hadana eka.
+          public class GetUserInvoicesQueryHandler : IRequestHandler<GetUserInvoicesQuery, IList<InvoiceVM>>
+            {
+                public Task<IList<InvoiceVM>> Handle(GetUserInvoicesQuery request, CancellationToken cancellationToken)
+                {
+                    throw new System.NotImplementedException();
+                }
+            }
+        meke use karanne IRequestHandler eken query eka input eka list eka return karanwa.database ekata save karanna one api eken ena 
+        data eka.ekata karanne di karanawa database eka.
+            public async Task<IList<InvoiceVM>> Handle(GetUserInvoicesQuery request, CancellationToken cancellationToken)
+        {
+            var invoices = await _context.Invoicestbl.Include(i => i.InvoiceItems)
+                .Where(i => i.CreatedBy == request.User).ToListAsync();
+            var vm = invoices.Select(i => new InvoiceVM
+            {
+                AmountPaid = i.AmountPaid,
+                Date = i.Date,
+                Discount = i.Discount,
+                DiscountTypes = i.DiscountTypes,
+                DueDate = i.DueDate,
+                From = i.From,
+                Id = i.Id,
+                InvoiceNumber = i.InvoiceNumber,
+                Logo = i.Logo,
+                PaymentTerms = i.PaymentTerms,
+                Tax = i.Tax,
+                TaxTypes = i.TaxTypes,
+                To = i.To,
+                InvoiceItems = i.InvoiceItems.Select(i => new InvoiceItemVM
+                {
+                    Id = i.Id,
+                    Item = i.Item,
+                    Quantity = i.Quantity,
+                    Rate = i.Rate
+                }).ToList()
+            }).ToList();
+            return vm;
+        }
+
+        samanyen wenne api eke tina eka query eka hair command eka hari aran handler eken eka domain ekata pass karala database 
+        ekata yawana eka.
+            mekedi balanawa userwai hadapu ekkenawai samanada kiyala ehemanam karanne samana result tika json ekak widihata return 
+            karana eka.
+                create karapu userwai dan ewana userwai balala ita adala invoices tika return karana eka thama karanne.
