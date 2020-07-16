@@ -1,6 +1,7 @@
 
 using System.Reflection; //assembly
 using Application.common.behaviors; //validate behavior eka thma wenas wenaa eka.
+using AutoMapper;
 using FluentValidation; //addvalidatorsfromassembly
 using MediatR;  //Ipiplinebehavior
 using Microsoft.Extensions.DependencyInjection;  //iservicecollection
@@ -14,6 +15,7 @@ namespace Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         } 
     }
