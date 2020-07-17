@@ -277,4 +277,60 @@ API
         ekata yawana eka.
             mekedi balanawa userwai hadapu ekkenawai samanada kiyala ehemanam karanne samana result tika json ekak widihata return 
             karana eka.
-                create karapu userwai dan ewana userwai balala ita adala invoices tika return karana eka thama karanne.
+                create karapu userwai dan ewana userwai balala ita adala invoices tika return karana eka thama karann
+--------------------------------------------------------------------------------------------------------------------------------
+4
+    api handler eke hari query eke hair thma data base ekath ekka connect karanna ganne 
+         var entity= new Invoice{
+                AmountPaid=request.AmountPaid,
+                Date=request.Date,
+                Discount=request.Discount,
+                DiscountTypes=request.DiscountTypes,
+                DueDate=request.DueDate,
+                From=request.From,
+                InvoiceNumber=request.InvoiceNumber,
+                Logo=request.Logo,
+                PaymentTerms=request.PaymentTerms,
+                Tax=request.Tax,
+                To=request.To,
+                TaxTypes=request.TaxTypes,
+                InvoiceItems=request.InvoiceItems.Select(i=>new InvoiceItem{
+                    Item=i.Item,
+                    Quantity=i.Quantity,
+                    Rate=i.Rate
+                    
+                }).ToList()
+            };
+
+            _context.Invoicestbl.Add(entity);
+            await _context.SaveChangesAsync(cancellationToken);
+            return entity.Id;
+            
+        }
+    
+    meke menna me kalla adu karaganna thama one karanne.
+        ekata karanne mulin application layer ekedi 
+            dotnet add package AutoMapper --version 10.0.0
+            dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection --version 8.0.0
+        ita passe karanne mapping profile ekak hadana eka.
+
+            CreateMap<Invoice,InvoiceVM>();
+            CreateMap<InvoiceItem,InvoiceItemVM>();
+
+            CreateMap<InvoiceVM,Invoice>();
+            CreateMap<InvoiceItemVM,InvoiceItem>();
+
+            CreateMap<CreateInvoiceCommands,Invoice>();
+        me wage karanna tinne ethakota auto mapper eken karanne hari eka map karaganna eka.mekedi namata daala eka map wenawa.
+            samahara welawata ehama nam wenas naw karanna tinne athin liyala dena eka.ekata karann tinne
+             CreateMap<InvoiceItem,InvoiceItemVM>().ConstructUsing(i=>new InvoiceItemVM{
+                Id=i.Id,
+                Item=i.Item,
+                
+            });
+        menna me wage use karanna one.mannual mapping karanna one.ita passe eka DependencyInjection injection eke danna one.
+        application eke.
+            ita passe karanna one api eke auto mapper deka install karaganna eka.
+
+        handler eke ctor eke meka use karanawa.
+            eken map kargannawa call karala.

@@ -1,6 +1,7 @@
 
 using System.Reflection; //assembly
 using Application.common.behaviors; //validate behavior eka thma wenas wenaa eka.
+using Application.invoices.mappingProfile;
 using AutoMapper;
 using FluentValidation; //addvalidatorsfromassembly
 using MediatR;  //Ipiplinebehavior
@@ -16,6 +17,7 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(typeof(InvoiceMappingProfile).Assembly);
             return services;
         } 
     }
