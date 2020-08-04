@@ -4,4 +4,5 @@ namespace Application.common
     {
         string UserId { get;}  
     }
+    
 }
